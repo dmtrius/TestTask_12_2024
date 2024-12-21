@@ -24,6 +24,7 @@ public class ShuffleServiceImpl implements ShuffleService {
         this.logService = logService;
     }
 
+    @Override
     public int[] getShuffledArray(int n) {
         if (n < MIN_NUM || n > MAX_NUM) {
             throw new IllegalArgumentException(
@@ -41,6 +42,7 @@ public class ShuffleServiceImpl implements ShuffleService {
         return result;
     }
 
+    @Override
     public Mono<int[]> getShuffleArrayAsync(int n) {
         return Mono.just(getShuffledArray(n));
     }

@@ -22,6 +22,7 @@ public class LogServiceImpl implements LogService {
                 .build();
     }
 
+    @Override
     public void logMessage(String message) {
         try {
             var response = webClient.post()

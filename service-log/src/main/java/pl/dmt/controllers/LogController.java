@@ -19,7 +19,7 @@ public class LogController {
 
     @PostMapping("/log")
     public ResponseEntity<Void> Log(@RequestBody(required = false) String message) {
-        service.log(message);
+        service.logMessage(message);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
