@@ -2,20 +2,22 @@ package pl.dmt.services;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+@Profile("!kafka")
 @Slf4j
-@Service
-public class LogServiceImpl implements LogService {
+@Service("logRestService")
+public class LogRestServiceImpl implements LogService {
     @Value("${app.log-service.url}")
     private String baseUrl;
     private final WebClient webClient;
 
-    public LogServiceImpl(WebClient.Builder webClientBuilder) {
+    public LogRestServiceImpl(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder
                 .baseUrl(baseUrl)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

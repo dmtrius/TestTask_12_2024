@@ -1,31 +1,22 @@
-package pl.dmt.services;
+package pl.dmt.dao;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Component;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-@Service
-public class ShuffleServiceImpl implements ShuffleService {
+@Component
+public class ShuffledData {
     @Value("${app.min-num}")
     private int MIN_NUM;
     @Value("${app.max-num}")
     private int MAX_NUM;
 
-    private final LogService logService;
-
-    public ShuffleServiceImpl(LogService logService) {
-        this.logService = logService;
-    }
-
-    @Override
-    public int[] getShuffledArray(int n) {
+    public int[] getData(int n) {
         if (n < MIN_NUM || n > MAX_NUM) {
             throw new IllegalArgumentException(
                     "Number must be greater than %d and less than %d"
@@ -35,15 +26,7 @@ public class ShuffleServiceImpl implements ShuffleService {
                 .boxed()
                 .collect(Collectors.toList());
         Collections.shuffle(list, new Random());
-        int[] result = list.stream().mapToInt(Integer::intValue).toArray();
 
-        logService.logMessage(Arrays.toString(result));
-
-        return result;
-    }
-
-    @Override
-    public Mono<int[]> getShuffleArrayAsync(int n) {
-        return Mono.just(getShuffledArray(n));
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
 }
