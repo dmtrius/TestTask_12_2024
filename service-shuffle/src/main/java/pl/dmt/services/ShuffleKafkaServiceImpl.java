@@ -1,7 +1,6 @@
 package pl.dmt.services;
 
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import pl.dmt.dao.ShuffledData;
@@ -12,10 +11,6 @@ import java.util.Arrays;
 @Profile("kafka")
 @Service("shuffleKafkaService")
 public class ShuffleKafkaServiceImpl implements ShuffleService {
-    @Value("${app.min-num}")
-    private int MIN_NUM;
-    @Value("${app.max-num}")
-    private int MAX_NUM;
 
     private final ShuffledData data;
     private final LogService logService;
