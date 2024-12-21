@@ -53,6 +53,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,6 +64,12 @@
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-resolver-dns-native-macos</artifactId>
+            <classifier>osx-aarch_64</classifier>
+            <!-- classifier osx-x86_64 -->
         </dependency>
     </dependencies>
     <build>

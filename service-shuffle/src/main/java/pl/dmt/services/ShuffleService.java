@@ -3,6 +3,7 @@ package pl.dmt.services;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -16,6 +17,12 @@ public class ShuffleService {
     @Value("${app.max-num}")
     private int MAX_NUM;
 
+    private final LogService logService;
+
+    public ShuffleService(LogService logService) {
+        this.logService = logService;
+    }
+
     public int[] getShuffledArray(int n) {
         if (n < MIN_NUM || n > MAX_NUM) {
             throw new IllegalArgumentException(
@@ -26,6 +33,10 @@ public class ShuffleService {
                 .boxed()
                 .collect(Collectors.toList());
         Collections.shuffle(list, new Random());
-        return list.stream().mapToInt(Integer::intValue).toArray();
+        int[] result = list.stream().mapToInt(Integer::intValue).toArray();
+
+        logService.logMessage(Arrays.toString(result));
+
+        return result;
     }
 }
