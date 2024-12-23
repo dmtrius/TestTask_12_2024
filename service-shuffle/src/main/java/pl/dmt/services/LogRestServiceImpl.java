@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-@Profile("!kafka")
 @Slf4j
+@Profile("!kafka")
 @Service("logRestService")
 public class LogRestServiceImpl implements LogService {
     @Value("${app.log-service.url}")
