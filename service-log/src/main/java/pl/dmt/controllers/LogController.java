@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.dmt.services.LogService;
 
-@RequestMapping("/api")
+@RequestMapping("/api/${app.services.version}")
 @RestController
 public class LogController {
     private final LogService service;

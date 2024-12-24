@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.dmt.services.ShuffleService;
 import reactor.core.publisher.Mono;
 
-@RequestMapping("/api")
+@RequestMapping("/api/${app.services.version}")
 @RestController
 public class ShuffleController {
     private final ShuffleService service;
