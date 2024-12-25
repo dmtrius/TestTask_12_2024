@@ -9,6 +9,8 @@ import pl.dmt.kafka.LogKafkaProducer;
 @Profile("kafka")
 @Service("logKafkaService")
 public class LogKafkaServiceImpl implements LogService {
+    @Value("${spring.kafka.consumer.key}")
+    private String key;
     @Value("${spring.kafka.consumer.topic}")
     private String topic;
 
@@ -20,6 +22,6 @@ public class LogKafkaServiceImpl implements LogService {
 
     @Override
     public void logMessage(String message) {
-        producer.sendMessage(topic, message);
+        producer.sendMessage(topic, key, message);
     }
 }

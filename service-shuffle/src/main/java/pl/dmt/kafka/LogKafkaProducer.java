@@ -13,8 +13,8 @@ public class LogKafkaProducer {
         this.kafkaTemplate = kafkaTemplate;
     }
 
-    public void sendMessage(String topic, String message) {
-        kafkaTemplate.send(topic, message);
+    public void sendMessage(String topic, String key, String message) {
+        kafkaTemplate.send(topic, key, message);
         log.info("LOGGED> message: {} sent to topic: {}", message, topic);
     }
 }
